@@ -3,20 +3,82 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
   <title>CJC Eventos | Decoraciones y Alquiler</title>
-
-  
-  
-  
   <link rel="stylesheet" href="stylerlogo.css" />
   
-  
-  
-  
-  
-  
   <style>
+    /* --- HEADER LIMPIO (solo logo) --- */
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 20px;
+      background: #fff;
+      border-bottom: 2px solid #ffd700;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    .logo { display: flex; align-items: center; gap: 10px; }
+    .logo-img { height: 50px; width: auto; }
+
+    /* --- HERO CON GRID (Izquierda - Centro - Derecha) --- */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 2fr 1fr; /* 1 parte izquierda, 2 partes centro, 1 parte derecha */
+      align-items: center;
+      text-align: center;
+      padding: 40px 20px;
+      background: linear-gradient(135deg, #fff8e1 0%, #ffffff 100%);
+      gap: 20px;
+    }
+    
+    .hero-side {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .hero-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .hero h1 {
+      color: #d32f2f;
+      font-size: 2.4rem;
+      margin: 0 0 10px 0;
+    }
+    .hero p { margin: 6px 0; color: #444; font-size: 1.05rem; }
+
+    .hero-foto-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    .hero-foto {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #ffd700;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      transition: transform 0.25s;
+      background-color: #eee;
+    }
+    .hero-foto:hover { transform: scale(1.08); }
+    .hero-foto-item span {
+      font-size: 0.85rem;
+      font-weight: bold;
+      color: #333;
+      background: #fff;
+      padding: 4px 12px;
+      border-radius: 20px;
+      border: 1px solid #ffd700;
+    }
+
     /* --- BARRA DE UBICACIÓN Y REDES --- */
     .info-bar-sencilla {
       background-color: #f8f9fa;
@@ -31,177 +93,61 @@
       gap: 25px;
       flex-wrap: wrap;
     }
-    .info-bar-sencilla a {
-      color: #d32f2f;
-      text-decoration: none;
-      font-weight: bold;
-      transition: color 0.2s;
-    }
-    .info-bar-sencilla a:hover {
-      color: #b71c1c;
-      text-decoration: underline;
-    }
-    .info-bar-sencilla .redes a {
-      color: #333;
-      margin: 0 5px;
-      font-weight: normal;
-    }
-    .info-bar-sencilla .redes a:hover {
-      color: #d32f2f;
-      text-decoration: none;
-    }
-    @media (max-width: 600px) {
-      .info-bar-sencilla {
-        flex-direction: column;
-        gap: 8px;
-        padding: 10px;
-      }
-    }
+    .info-bar-sencilla a { color: #d32f2f; text-decoration: none; font-weight: bold; transition: color 0.2s; }
+    .info-bar-sencilla a:hover { color: #b71c1c; text-decoration: underline; }
+    .info-bar-sencilla .redes a { color: #333; margin: 0 5px; font-weight: normal; }
+    .info-bar-sencilla .redes a:hover { color: #d32f2f; text-decoration: none; }
 
-    /* Estilos del lightbox */
-    .lightbox {
-      display: none;
-      position: fixed;
-      z-index: 9999;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.95);
-      animation: fadeIn 0.3s;
-    }
-    .lightbox.active {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .lightbox-content {
-      position: relative;
-      max-width: 90%;
-      max-height: 90%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .lightbox-img {
-      max-width: 100%;
-      max-height: 85vh;
-      object-fit: contain;
-      border-radius: 8px;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-    }
-    .lightbox-caption {
-      color: white;
-      padding: 15px;
-      text-align: center;
-      font-size: 1.1rem;
-      background: rgba(0, 0, 0, 0.7);
-      border-radius: 0 0 8px 8px;
-      width: 100%;
-      max-width: 600px;
-    }
-    .lightbox-close {
-      position: absolute;
-      top: 20px;
-      right: 40px;
-      color: white;
-      font-size: 40px;
-      font-weight: bold;
-      cursor: pointer;
-      z-index: 10000;
-      transition: transform 0.2s;
-    }
-    .lightbox-close:hover {
-      transform: scale(1.1);
-      color: #ffd700;
-    }
-    .lightbox-prev,
-    .lightbox-next {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      color: white;
-      font-size: 50px;
-      font-weight: bold;
-      cursor: pointer;
-      padding: 20px;
-      user-select: none;
-      transition: all 0.3s;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .lightbox-prev:hover,
-    .lightbox-next:hover {
-      background: rgba(255, 215, 0, 0.3);
-      transform: translateY(-50%) scale(1.1);
-    }
+    /* --- LIGHTBOX --- */
+    .lightbox { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.95); animation: fadeIn 0.3s; }
+    .lightbox.active { display: flex; justify-content: center; align-items: center; }
+    .lightbox-content { position: relative; max-width: 90%; max-height: 90%; display: flex; flex-direction: column; align-items: center; }
+    .lightbox-img { max-width: 100%; max-height: 85vh; object-fit: contain; border-radius: 8px; }
+    .lightbox-caption { color: white; padding: 15px; text-align: center; background: rgba(0,0,0,0.7); border-radius: 0 0 8px 8px; width: 100%; max-width: 600px; }
+    .lightbox-close { position: absolute; top: 20px; right: 40px; color: white; font-size: 40px; cursor: pointer; }
+    .lightbox-prev, .lightbox-next { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 50px; cursor: pointer; padding: 20px; background: rgba(255,255,255,0.1); border-radius: 50%; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; }
     .lightbox-prev { left: 20px; }
     .lightbox-next { right: 20px; }
-    .lightbox-counter {
-      position: absolute;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      color: white;
-      font-size: 1rem;
-      background: rgba(0, 0, 0, 0.7);
-      padding: 8px 20px;
-      border-radius: 20px;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    .card-media img {
-      cursor: pointer;
-      transition: transform 0.3s;
-    }
-    .card-media img:hover {
-      transform: scale(1.05);
-    }
-    .view-gallery-hint {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background: rgba(255, 215, 0, 0.9);
-      color: #000;
-      padding: 5px 10px;
-      border-radius: 5px;
-      font-size: 0.8rem;
-      font-weight: bold;
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-    .card-media:hover .view-gallery-hint {
-      opacity: 1;
+    .lightbox-counter { position: absolute; top: 20px; left: 50%; transform: translateX(-50%); color: white; background: rgba(0,0,0,0.7); padding: 8px 20px; border-radius: 20px; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .card-media img { cursor: pointer; transition: transform 0.3s; }
+    .card-media img:hover { transform: scale(1.05); }
+    .view-gallery-hint { position: absolute; top: 10px; right: 10px; background: rgba(255,215,0,0.9); color: #000; padding: 5px 10px; border-radius: 5px; font-size: 0.8rem; font-weight: bold; opacity: 0; transition: opacity 0.3s; }
+    .card-media:hover .view-gallery-hint { opacity: 1; }
+
+    /* --- RESPONSIVE (CELULARES) --- */
+    @media (max-width: 768px) {
+      .info-bar-sencilla { flex-direction: column; gap: 8px; }
+      .logo-img { height: 40px; }
+      
+      /* En celular, las imágenes van arriba una al lado de la otra, y el texto abajo */
+      .hero {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: 
+          "img1 img2"
+          "text text";
+        gap: 15px;
+        padding: 30px 15px;
+      }
+      .hero-left { grid-area: img1; }
+      .hero-right { grid-area: img2; }
+      .hero-center { grid-area: text; margin-top: 10px; }
+      .hero h1 { font-size: 1.8rem; }
+      .hero-foto { width: 100px; height: 100px; }
     }
   </style>
 </head>
 
 <body>
+  <!-- HEADER LIMPIO (solo logo) -->
   <header class="topbar">
     <div class="logo">
-   
-   
-       
-
-
-
       <img src="logo.jpeg" alt="CJC Eventos" class="logo-img" />
-   
-   
-   
     </div>
 
     <div class="filters">
-      <button class="filter-btn active" data-filter="todos">Todos</button>
+      <button class="filter-btn active" data-filter="alquiler">Alquiler</button>
       <button class="filter-btn" data-filter="decoracion">Decoración</button>
-      <button class="filter-btn" data-filter="alquiler">Alquiler</button>
     </div>
 
     <button class="cart-btn" id="openCart">
@@ -209,63 +155,55 @@
     </button>
   </header>
   
- 
- 
- 
- 
-  <!-- ========================================== -->
-  <!-- BARRA DE UBICACIÓN Y REDES                 -->
-  <!-- ========================================== -->
- 
- 
- 
- 
- 
+  <!-- BARRA DE UBICACIÓN Y REDES -->
   <div class="info-bar-sencilla">
     <div class="info-item">
       📍 <a href="https://maps.app.goo.gl/ySA9xcZqHtpnFDfs9" target="_blank">Ver ubicación de nuestro local</a>
     </div>
     <div class="info-item redes">
-     
-     
-     
       Síguenos: 
-
-
       <a href="https://www.facebook.com/profile.php?id=61586232065752" target="_blank">Facebook</a> | 
       <a href="https://www.tiktok.com/@cjc_deco?_r=1&_t=ZS-9BKZTKCcjMz" target="_blank">TikTok</a>
-   
-   
     </div>
   </div>
-  <!-- ========================================== -->
 
-  
-  
-  
-  
+  <!-- HERO: IZQUIERDA - CENTRO - DERECHA -->
   <section class="hero">
-    <h1>CJC Eventos</h1>
-    <p>
-      <p> Decoraciones, alquileres</p>  
-   
-   
-      <p>📞 Teléfono:  3232510136</p>
-      <p>📍calle Cra. 6 #2 46 1, Villagarzón, Putumayo</p>
-    </p>
+    <!-- LADO IZQUIERDO: LOCAL -->
+    <div class="hero-side hero-left">
+      <div class="hero-foto-item">
+        <img src="local.jpg" alt="Nuestro local" class="hero-foto" onerror="this.src='https://images.unsplash.com/photo-1556740758-90de374c12ad?w=200&h=200&fit=crop'" />
+        <span>Local</span>
+      </div>
+    </div>
+    
+    <!-- CENTRO: TEXTO -->
+    <div class="hero-center">
+      <h1>CJC Eventos</h1>
+      <p>Decoraciones, alquileres y más.</p>
+      <p>📞 Teléfono: 3232510136</p>
+      <p>📍 Calle Cra. 6 #2 46 1, Villagarzón, Putumayo</p>
+    </div>
+
+    <!-- LADO DERECHO: DUEÑO -->
+    <div class="hero-side hero-right">
+      <div class="hero-foto-item">
+        <img src="local1.jpg" alt="Propietario" class="hero-foto" onerror="this.src='https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200&h=200&fit=crop'" />
+        <span>👤 equipo</span>
+      </div>
+    </div>
   </section>
 
   <main>
     <div id="catalogo" class="grid"></div>
   </main>
 
-  <!-- Lightbox para ver imágenes -->
+  <!-- Lightbox -->
   <div id="lightbox" class="lightbox" role="dialog" aria-label="Visor de imágenes">
     <span class="lightbox-close" id="lightboxClose">&times;</span>
     <span class="lightbox-counter" id="lightboxCounter"></span>
     <button class="lightbox-prev" id="lightboxPrev">&#10094;</button>
     <button class="lightbox-next" id="lightboxNext">&#10095;</button>
-    
     <div class="lightbox-content">
       <img id="lightboxImg" class="lightbox-img" src="" alt="">
       <div id="lightboxCaption" class="lightbox-caption"></div>
@@ -279,52 +217,21 @@
       <h2>Tu selección</h2>
       <button id="closeCart" class="icon-btn" aria-label="Cerrar carrito">✕</button>
     </div>
-
     <div id="cartItems" class="cart-items"></div>
-
     <div class="cart-form">
-      <label>
-        Nombre
-        <input id="clienteNombre" type="text" placeholder="Tu nombre" />
-      </label>
-
-      <label>
-        Teléfono
-        <input id="clienteTelefono" type="tel" placeholder="Opcional" />
-      </label>
-
-      <label>
-        Fecha deseada para alquiler
-        <input id="clienteFecha" type="date" />
-      </label>
-
-      <label>
-        Comentarios
-        <textarea
-          id="clienteNotas"
-          rows="3"
-          placeholder="Ej: necesito cotización, ubicación, horario, cantidad de personas..."
-        ></textarea>
-      </label>
+      <label>Nombre <input id="clienteNombre" type="text" placeholder="Tu nombre" /></label>
+      <label>Teléfono <input id="clienteTelefono" type="tel" placeholder="Opcional" /></label>
+      <label>Fecha deseada <input id="clienteFecha" type="date" /></label>
+      <label>Comentarios <textarea id="clienteNotas" rows="3" placeholder="Ej: necesito cotización, ubicación, horario..."></textarea></label>
     </div>
-
     <div class="cart-footer">
       <div class="total-row">
         <span>Total estimado (Alquileres)</span>
         <strong id="cartTotal">$0</strong>
       </div>
-
-      <small>
-        * Las decoraciones se cotizan por separado según el diseño. El total solo incluye alquileres.
-      </small>
-
-      <button id="sendWhatsapp" class="whatsapp-btn">
-        Enviar pedido por WhatsApp
-      </button>
-
-      <button id="clearCart" class="secondary-btn">
-        Vaciar carrito
-      </button>
+      <small>* Las decoraciones se cotizan por separado.</small>
+      <button id="sendWhatsapp" class="whatsapp-btn">Enviar pedido por WhatsApp</button>
+      <button id="clearCart" class="secondary-btn">Vaciar carrito</button>
     </div>
   </aside>
 
@@ -332,9 +239,6 @@
 
   <script>
     const WHATSAPP_NUMBER = "573232510136";
-
-
-
 
     const productos = [
       { id: 1, nombre: "numero led", categoria: "alquiler", tipo: "Alquiler", descripcion: "Disponible en modelo 1 y 5. Única unidad. Iluminación cálida.", precio: 25000, unidad: "/unidad/día", img: "letra uno.jpg" },
@@ -361,41 +265,31 @@
       { id: 22, nombre: "Bandeja de lujo para postres", categoria: "alquiler", tipo: "Alquiler", descripcion: "Alquiler decoración.", precio: 10000, unidad: "/día", img: "plato2.jpg" },
       { id: 23, nombre: "Fondos", categoria: "alquiler", tipo: "Alquiler", descripcion: "Fondo 15.000 base 10.000.", precio: 25000, unidad: "/día", img: "fondobella.jpg" },
       { id: 24, nombre: "Fondos", categoria: "alquiler", tipo: "Servicio", descripcion: "Fondo 25.000 base 10.000.", precio: 35000, unidad: "/evento", img: "hombre.jpg" },
-      { id: 25, nombre: "cubos de lujo", categoria: "alquiler", tipo: "Servicio", descripcion: "cubode lujo 30 por unidad ", precio: 80000, unidad: "/evento", img: "cubo3.jpg" },
-     
-     
-     
-     
-      // --- DECORACIONES (SIN PRECIO, SOLO COTIZACIÓN) ---
-     
-     
-     
-     
-      { id: 25, nombre: "Agenda tu valoración", categoria: "decoracion", tipo: "Decoración", descripcion: "Diseño personalizado. Contáctanos para cotizar.", img: "deco1.jpg" },
+      { id: 25, nombre: "cubos de lujo", categoria: "alquiler", tipo: "Servicio", descripcion: "cubo de lujo 30 por unidad", precio: 80000, unidad: "/evento", img: "cubo3.jpg" },
+      { id: 26, nombre: "Agenda tu valoración", categoria: "decoracion", tipo: "Decoración", descripcion: "Diseño personalizado. Contáctanos para cotizar.", img: "deco1.jpg" },
       { id: 27, nombre: "Agenda tu valoración", categoria: "decoracion", tipo: "Decoración", descripcion: "Diseño personalizado. Contáctanos para cotizar.", img: "deco2.jpg" },
       { id: 28, nombre: "Agenda tu valoración", categoria: "decoracion", tipo: "Decoración", descripcion: "Diseño personalizado. Contáctanos para cotizar.", img: "deco3.jpg" },
-      { id: 39, nombre: "Agenda tu valoración", categoria: "decoracion", tipo: "Decoración", descripcion: "Diseño personalizado. Contáctanos para cotizar.", img: "deco4.jpeg" },
+      { id: 29, nombre: "Agenda tu valoración", categoria: "decoracion", tipo: "Decoración", descripcion: "Diseño personalizado. Contáctanos para cotizar.", img: "deco4.jpeg" },
       { id: 30, nombre: "Agenda tu valoración", categoria: "decoracion", tipo: "Decoración", descripcion: "Diseño personalizado. Contáctanos para cotizar.", img: "deco5.jpeg" },
       { id: 31, nombre: "Agenda tu valoración", categoria: "decoracion", tipo: "Decoración", descripcion: "Diseño personalizado. Contáctanos para cotizar.", img: "deco6.jpeg" },
-      { id: 3, nombre: "Agenda tu valoración", categoria: "decoracion", tipo: "Decoración", descripcion: "Diseño personalizado. Contáctanos para cotizar.", img: "deco7.jpeg" },
-      { id: 34, nombre: "Agenda tu valoración", categoria: "decoracion", tipo: "Decoración", descripcion: "Diseño personalizado. Contáctanos para cotizar.", img: "deco8.jpeg" },
-      { id: 35, nombre: "Agenda tu valoración", categoria: "decoracion", tipo: "Decoración", descripcion: "Diseño personalizado. Contáctanos para cotizar.", img: "deco9.jpeg" },
-      { id: 36, nombre: "Agenda tu valoración", categoria: "decoracion", tipo: "Decoración", descripcion: "Diseño personalizado. Contáctanos para cotizar.", img: "deco10.jpeg" },
-      { id: 37, nombre: "Agenda tu valoración", categoria: "decoracion", tipo: "Decoración", descripcion: "Diseño personalizado. Contáctanos para cotizar.", img: "deco11.jpg" },
-      { id: 38, nombre: "Agenda tu valoración", categoria: "decoracion", tipo: "Decoración", descripcion: "Diseño personalizado. Contáctanos para cotizar.", img: "deco12.jpg" },
-      { id: 39, nombre: "Agenda tu valoración", categoria: "decoracion", tipo: "Decoración", descripcion: "Diseño personalizado. Contáctanos para cotizar.", img: "deco13.jpg" },
-      { id: 40, nombre: "Agenda tu valoración", categoria: "decoracion", tipo: "Decoración", descripcion: "Diseño personalizado. Contáctanos para cotizar.", img: "deco14.jpg" },
-      { id: 41, nombre: "Agenda tu valoración", categoria: "decoracion", tipo: "Decoración", descripcion: "Diseño personalizado. Contáctanos para cotizar.", img: "deco15.jpg" },
-      { id: 42, nombre: "Agenda tu valoración", categoria: "decoracion", tipo: "Decoración", descripcion: "Diseño personalizado. Contáctanos para cotizar.", img: "deco16.jpg" },
-      { id: 43, nombre: "Agenda tu valoración", categoria: "decoracion", tipo: "Decoración", descripcion: "Diseño personalizado. Contáctanos para cotizar.", img: "deco17.jpg" },
-      { id: 44, nombre: "Agenda tu valoración", categoria: "decoracion", tipo: "Decoración", descripcion: "Diseño personalizado. Contáctanos para cotizar.", img: "deco18.jpg" },
-      { id: 45, nombre: "Agenda tu valoración", categoria: "decoracion", tipo: "Decoración", descripcion: "Diseño personalizado. Contáctanos para cotizar.", img: "deco19.jpg" },
-      { id: 46, nombre: "Agenda tu valoración", categoria: "decoracion", tipo: "Decoración", descripcion: "Diseño personalizado. Contáctanos para cotizar.", img: "deco20.jpg" }
+      { id: 32, nombre: "Agenda tu valoración", categoria: "decoracion", tipo: "Decoración", descripcion: "Diseño personalizado. Contáctanos para cotizar.", img: "deco7.jpeg" },
+      { id: 33, nombre: "Agenda tu valoración", categoria: "decoracion", tipo: "Decoración", descripcion: "Diseño personalizado. Contáctanos para cotizar.", img: "deco8.jpeg" },
+      { id: 34, nombre: "Agenda tu valoración", categoria: "decoracion", tipo: "Decoración", descripcion: "Diseño personalizado. Contáctanos para cotizar.", img: "deco9.jpeg" },
+      { id: 35, nombre: "Agenda tu valoración", categoria: "decoracion", tipo: "Decoración", descripcion: "Diseño personalizado. Contáctanos para cotizar.", img: "deco10.jpeg" },
+      { id: 36, nombre: "Agenda tu valoración", categoria: "decoracion", tipo: "Decoración", descripcion: "Diseño personalizado. Contáctanos para cotizar.", img: "deco11.jpg" },
+      { id: 37, nombre: "Agenda tu valoración", categoria: "decoracion", tipo: "Decoración", descripcion: "Diseño personalizado. Contáctanos para cotizar.", img: "deco12.jpg" },
+      { id: 38, nombre: "Agenda tu valoración", categoria: "decoracion", tipo: "Decoración", descripcion: "Diseño personalizado. Contáctanos para cotizar.", img: "deco13.jpg" },
+      { id: 39, nombre: "Agenda tu valoración", categoria: "decoracion", tipo: "Decoración", descripcion: "Diseño personalizado. Contáctanos para cotizar.", img: "deco14.jpg" },
+      { id: 40, nombre: "Agenda tu valoración", categoria: "decoracion", tipo: "Decoración", descripcion: "Diseño personalizado. Contáctanos para cotizar.", img: "deco15.jpg" },
+      { id: 41, nombre: "Agenda tu valoración", categoria: "decoracion", tipo: "Decoración", descripcion: "Diseño personalizado. Contáctanos para cotizar.", img: "deco16.jpg" },
+      { id: 42, nombre: "Agenda tu valoración", categoria: "decoracion", tipo: "Decoración", descripcion: "Diseño personalizado. Contáctanos para cotizar.", img: "deco17.jpg" },
+      { id: 43, nombre: "Agenda tu valoración", categoria: "decoracion", tipo: "Decoración", descripcion: "Diseño personalizado. Contáctanos para cotizar.", img: "deco18.jpg" },
+      { id: 44, nombre: "Agenda tu valoración", categoria: "decoracion", tipo: "Decoración", descripcion: "Diseño personalizado. Contáctanos para cotizar.", img: "deco19.jpg" },
+      { id: 45, nombre: "Agenda tu valoración", categoria: "decoracion", tipo: "Decoración", descripcion: "Diseño personalizado. Contáctanos para cotizar.", img: "deco20.jpg" }
     ];
 
     let carrito = JSON.parse(localStorage.getItem("carrito") || "[]");
     carrito = sincronizarCarritoConProductos(carrito);
-    
     let currentImageIndex = 0;
     let visibleProducts = [];
 
@@ -406,7 +300,6 @@
     const cartPanel = document.getElementById("cartPanel");
     const overlay = document.getElementById("overlay");
     const toast = document.getElementById("toast");
-    
     const lightbox = document.getElementById("lightbox");
     const lightboxImg = document.getElementById("lightboxImg");
     const lightboxCaption = document.getElementById("lightboxCaption");
@@ -430,10 +323,7 @@
       });
     }
 
-    function formatPrice(value) {
-      return "$" + Number(value || 0).toLocaleString("es");
-    }
-
+    function formatPrice(value) { return "$" + Number(value || 0).toLocaleString("es"); }
     function formatearFecha(fechaISO) {
       if (!fechaISO) return "";
       const partes = fechaISO.split("-");
@@ -441,9 +331,8 @@
       return `${partes[2]}/${partes[1]}/${partes[0]}`;
     }
 
-    // ✅ 1. RENDERIZADO: Muestra "Consultar precio" para decoraciones
-    function renderProductos(filtro = "todos") {
-      visibleProducts = filtro === "todos" ? productos : productos.filter(p => p.categoria === filtro);
+    function renderProductos(filtro = "alquiler") {
+      visibleProducts = productos.filter(p => p.categoria === filtro);
       catalogo.innerHTML = visibleProducts.map((p, index) => `
         <article class="card">
           <div class="card-media">
@@ -456,10 +345,10 @@
           </div>
           <div class="card-body">
             <h3>${escapeHtml(p.nombre)}</h3>
-            <p>${escapeHtml(p.descripcion || "Diseño personalizado. Contáctanos para cotizar.")}</p>
+            <p>${escapeHtml(p.descripcion || "Diseño personalizado.")}</p>
             <div class="price">
               ${p.categoria.toLowerCase() === 'decoracion' 
-                ? `<span style="color: #d4af37; font-weight: bold; font-size: 0.95rem;">Consultar precio</span>` 
+                ? `<span style="color: #d4af37; font-weight: bold;">Consultar precio</span>` 
                 : `${formatPrice(p.precio)} ${p.unidad ? `<small>${escapeHtml(p.unidad)}</small>` : ""}`}
             </div>
             <button class="add-btn" onclick="agregarAlCarrito(${p.id})">Agregar al carrito</button>
@@ -468,48 +357,26 @@
       `).join("");
     }
 
-    function abrirLightbox(index) {
-      currentImageIndex = index;
-      actualizarLightbox();
-      lightbox.classList.add("active");
-      document.body.style.overflow = "hidden";
-    }
-
-    function cerrarLightbox() {
-      lightbox.classList.remove("active");
-      document.body.style.overflow = "";
-    }
-
+    function abrirLightbox(index) { currentImageIndex = index; actualizarLightbox(); lightbox.classList.add("active"); document.body.style.overflow = "hidden"; }
+    function cerrarLightbox() { lightbox.classList.remove("active"); document.body.style.overflow = ""; }
     function actualizarLightbox() {
       const producto = visibleProducts[currentImageIndex];
       if (!producto) return;
       lightboxImg.src = producto.img || "";
       lightboxImg.alt = producto.nombre;
-      const precioTexto = producto.categoria.toLowerCase() === 'decoracion' 
-        ? "Consultar precio" 
-        : `${formatPrice(producto.precio)} ${producto.unidad || ""}`;
+      const precioTexto = producto.categoria.toLowerCase() === 'decoracion' ? "Consultar precio" : `${formatPrice(producto.precio)} ${producto.unidad || ""}`;
       lightboxCaption.innerHTML = `<strong>${producto.nombre}</strong><br>${producto.descripcion || ""}<br><small>${precioTexto}</small>`;
       lightboxCounter.textContent = `${currentImageIndex + 1} / ${visibleProducts.length}`;
     }
-
-    function siguienteImagen() {
-      currentImageIndex = (currentImageIndex + 1) % visibleProducts.length;
-      actualizarLightbox();
-    }
-
-    function imagenAnterior() {
-      currentImageIndex = (currentImageIndex - 1 + visibleProducts.length) % visibleProducts.length;
-      actualizarLightbox();
-    }
+    function siguienteImagen() { currentImageIndex = (currentImageIndex + 1) % visibleProducts.length; actualizarLightbox(); }
+    function imagenAnterior() { currentImageIndex = (currentImageIndex - 1 + visibleProducts.length) % visibleProducts.length; actualizarLightbox(); }
 
     function agregarAlCarrito(id) {
       const producto = productos.find(p => p.id === id);
       if (!producto) return;
       const existente = carrito.find(item => item.id === id);
       if (existente) { existente.cantidad += 1; } 
-      else {
-        carrito.push({ id: producto.id, nombre: producto.nombre, precio: producto.precio, unidad: producto.unidad, categoria: producto.categoria, tipo: producto.tipo, cantidad: 1 });
-      }
+      else { carrito.push({ id: producto.id, nombre: producto.nombre, precio: producto.precio, unidad: producto.unidad, categoria: producto.categoria, tipo: producto.tipo, cantidad: 1 }); }
       guardarCarrito();
       mostrarToast(`${producto.nombre} agregado`);
     }
@@ -522,31 +389,15 @@
       guardarCarrito();
     }
 
-    function eliminarDelCarrito(id) {
-      carrito = carrito.filter(i => i.id !== id);
-      guardarCarrito();
-    }
-
-    function vaciarCarrito() {
-      if (!carrito.length) return;
-      if (confirm("¿Seguro que quieres vaciar el carrito?")) {
-        carrito = [];
-        guardarCarrito();
-      }
-    }
-
-    function guardarCarrito() {
-      localStorage.setItem("carrito", JSON.stringify(carrito));
-      actualizarUI();
-    }
-
+    function eliminarDelCarrito(id) { carrito = carrito.filter(i => i.id !== id); guardarCarrito(); }
+    function vaciarCarrito() { if (!carrito.length) return; if (confirm("¿Seguro que quieres vaciar el carrito?")) { carrito = []; guardarCarrito(); } }
+    function guardarCarrito() { localStorage.setItem("carrito", JSON.stringify(carrito)); actualizarUI(); }
     function actualizarUI() {
       cartCount.textContent = carrito.reduce((sum, item) => sum + item.cantidad, 0);
       cartTotal.textContent = formatPrice(calcularTotal());
       renderCartItems();
     }
 
-    // ✅ 2. CÁLCULO: Solo suma los alquileres, ignora decoraciones
     function calcularTotal() {
       return carrito.reduce((sum, item) => {
         const precioASumar = item.categoria.toLowerCase() === 'decoracion' ? 0 : (item.precio || 0);
@@ -554,17 +405,12 @@
       }, 0);
     }
 
-    // ✅ 3. CARRITO VISUAL: Muestra "Consultar" en dorado para decoraciones
     function renderCartItems() {
-      if (!carrito.length) {
-        cartItems.innerHTML = `<p class="empty">Tu carrito está vacío.</p>`;
-        return;
-      }
+      if (!carrito.length) { cartItems.innerHTML = `<p class="empty">Tu carrito está vacío.</p>`; return; }
       cartItems.innerHTML = carrito.map(item => {
         const esDecoracion = item.categoria.toLowerCase() === 'decoracion';
         const precioTexto = esDecoracion ? 'Consultar' : formatPrice(item.precio * item.cantidad);
         const estiloPrecio = esDecoracion ? 'color: #d4af37; font-weight: bold;' : '';
-        
         return `
         <div class="cart-item">
           <div class="cart-item-info">
@@ -572,87 +418,52 @@
             <small>${escapeHtml(item.tipo)} ${item.unidad ? ` · ${escapeHtml(item.unidad)}` : ""}</small>
           </div>
           <div class="qty-controls">
-            <button onclick="cambiarCantidad(${item.id}, -1)" aria-label="Restar">−</button>
+            <button onclick="cambiarCantidad(${item.id}, -1)">−</button>
             <span>${item.cantidad}</span>
-            <button onclick="cambiarCantidad(${item.id}, 1)" aria-label="Sumar">+</button>
+            <button onclick="cambiarCantidad(${item.id}, 1)">+</button>
           </div>
-          <div class="item-price" style="font-size: 0.9rem; ${estiloPrecio}">
-            ${precioTexto}
-          </div>
-          <button class="remove" onclick="eliminarDelCarrito(${item.id})" aria-label="Eliminar">🗑</button>
-        </div>
-      `}).join("");
+          <div class="item-price" style="${estiloPrecio}">${precioTexto}</div>
+          <button class="remove" onclick="eliminarDelCarrito(${item.id})">🗑</button>
+        </div>`;
+      }).join("");
     }
 
-    function abrirCarrito() {
-      cartPanel.classList.add("open");
-      overlay.classList.add("open");
-    }
+    function abrirCarrito() { cartPanel.classList.add("open"); overlay.classList.add("open"); }
+    function cerrarCarrito() { cartPanel.classList.remove("open"); overlay.classList.remove("open"); }
+    function mostrarToast(mensaje) { toast.textContent = mensaje; toast.classList.add("show"); setTimeout(() => { toast.classList.remove("show"); }, 1800); }
 
-    function cerrarCarrito() {
-      cartPanel.classList.remove("open");
-      overlay.classList.remove("open");
-    }
-
-    function mostrarToast(mensaje) {
-      toast.textContent = mensaje;
-      toast.classList.add("show");
-      setTimeout(() => { toast.classList.remove("show"); }, 1800);
-    }
-
-    // ✅ 4. WHATSAPP: Mensaje claro diferenciando alquileres de decoraciones
     function generarMensaje() {
       const nombre = document.getElementById("clienteNombre").value.trim();
       const telefono = document.getElementById("clienteTelefono").value.trim();
       const fecha = document.getElementById("clienteFecha").value;
       const notas = document.getElementById("clienteNotas").value.trim();
       const total = calcularTotal();
-
       const lineas = [];
       lineas.push("Hola, hice esta selección desde la página web de CJC Eventos:");
       lineas.push("");
-
       if (nombre) lineas.push(`👤 *Nombre:* ${nombre}`);
       if (telefono) lineas.push(`📱 *Teléfono:* ${telefono}`);
       if (fecha) lineas.push(`📅 *Fecha deseada:* ${formatearFecha(fecha)}`);
-
       lineas.push("");
       lineas.push("🛒 *Mi Selección:*");
-
       carrito.forEach(item => {
         const esDecoracion = item.categoria.toLowerCase() === 'decoracion';
         let detalle = `• ${item.nombre} (${item.tipo}) x${item.cantidad}`;
-        
-        if (esDecoracion) {
-          detalle += ` = *Consultar precio*`;
-          if (item.img) {
-            detalle += `\n  📷 *Foto de referencia:* ${item.img}`;
-          }
-        } else {
-          detalle += ` = ${formatPrice(item.precio * item.cantidad)}`;
-        }
-        
+        if (esDecoracion) { detalle += ` = *Consultar precio*`; } 
+        else { detalle += ` = ${formatPrice(item.precio * item.cantidad)}`; }
         lineas.push(detalle);
       });
-
       lineas.push("");
       lineas.push(`💰 *Total estimado (Alquileres):* ${formatPrice(total)}`);
-      lineas.push(`🎈 *Decoraciones:* Sujetas a cotización según diseño y materiales.`);
-
-      if (notas) {
-        lineas.push("");
-        lineas.push(`📝 *Comentarios:* ${notas}`);
-      }
-
+      lineas.push(`🎈 *Decoraciones:* Sujetos a cotización.`);
+      if (notas) { lineas.push(""); lineas.push(`📝 *Comentarios:* ${notas}`); }
       lineas.push("");
       lineas.push("Quedo atento(a) a la confirmación. ¡Gracias!");
-
       return lineas.join("\n");
     }
 
     function enviarWhatsApp() {
-      if (!carrito.length) { mostrarToast("Agrega productos o alquileres primero"); return; }
-      if (!/^\d+$/.test(WHATSAPP_NUMBER)) { alert("El número de WhatsApp debe tener solo dígitos, con código de país. Ejemplo: 573232510136"); return; }
+      if (!carrito.length) { mostrarToast("Agrega productos primero"); return; }
       const mensaje = generarMensaje();
       const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(mensaje)}`;
       window.open(url, "_blank", "noopener,noreferrer");
@@ -663,7 +474,6 @@
     document.getElementById("sendWhatsapp").addEventListener("click", enviarWhatsApp);
     document.getElementById("clearCart").addEventListener("click", vaciarCarrito);
     overlay.addEventListener("click", cerrarCarrito);
-
     lightboxClose.addEventListener("click", cerrarLightbox);
     lightboxNext.addEventListener("click", (e) => { e.stopPropagation(); siguienteImagen(); });
     lightboxPrev.addEventListener("click", (e) => { e.stopPropagation(); imagenAnterior(); });
@@ -685,7 +495,7 @@
       });
     });
 
-    renderProductos();
+    renderProductos("alquiler");
     actualizarUI();
   </script>
 </body>
